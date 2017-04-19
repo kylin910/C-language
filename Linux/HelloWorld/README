@@ -1,0 +1,48 @@
+编辑源程序:
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$ cat src/HelloWorld.c 
+#include <stdio.h>
+
+int main(){
+	printf("Hello World!");
+	return 0;
+}
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$
+
+查看工作目录结构：
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$ ls
+debug  distribute  README  src
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$ 
+
+生成预处理文件：
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$ gcc -E src/HelloWorld.c -o debug/temp/HelloWorld.i
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$
+
+汇编预处理文件:
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$ gcc -S debug/temp/HelloWorld.i -o debug/temp/HelloWorld.s
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$
+
+编译汇编文件(非debug版本)：
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$ gcc -c debug/temp/HelloWorld.s -o debug/temp/HelloWorld.o
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$
+
+编译汇编文件（debug版本－其中加入了调试信息）：
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$ gcc -g -c debug/temp/HelloWorld.s -o debug/temp/HelloWorld.o
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$
+
+生成可执行文件：
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$ gcc debug/temp/HelloWorld.o -o debug/bin/HelloWorld
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$
+
+对比debug版本的可执行程序和distribute版本的可执行程序文件大小：
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$ ls -la distribute/bin/
+total 24
+drwxrwxr-x 2 kylin kylin 4096 4月  12 14:17 .
+drwxrwxr-x 4 kylin kylin 4096 4月  12 13:12 ..
+-rwxrwxr-x 1 kylin kylin 7352 4月  12 14:17 HelloWorld
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$ ls -la debug/bin/
+total 24
+drwxrwxr-x 2 kylin kylin 4096 4月  12 14:14 .
+drwxrwxr-x 4 kylin kylin 4096 4月  12 13:12 ..
+-rwxrwxr-x 1 kylin kylin 7888 4月  12 14:14 HelloWorld
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/HelloWorld$
+发现debug版本的可执行程序文件的大小要比distribute版本的可执行程序文件要大。

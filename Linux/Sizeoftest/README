@@ -1,0 +1,13 @@
+sizeof_test.c程序编译过程
+１.预处理源程序
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/Sizeoftest$ gcc -E src/sizeof_test.c -o debug/temp/sizeof_test.i
+
+2.汇编预处理文件
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/Sizeoftest$ gcc -S debug/temp/sizeof_test.i -o debug/temp/sizeof_test.o
+
+3.编译汇编文件
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/Sizeoftest$ gcc -g -c debug/temp/sizeof_test.s -o debug/sizeof_test.o
+
+4.连接生成可执行程序
+kylin@kylin-PC:~/workspace/CAPP/C-language/Linux/Sizeoftest$ gcc debug/temp/sizeof_test.o -o debug/bin/sizeof_test
+
