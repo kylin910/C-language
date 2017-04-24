@@ -1,10 +1,15 @@
-# 1 "src/pointer-arraytest.c"
+# 1 "src/pointer-functiontest4.c"
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 1 "<command-line>" 2
-# 1 "src/pointer-arraytest.c"
-# 19 "src/pointer-arraytest.c"
+# 1 "src/pointer-functiontest4.c"
+
+
+
+
+
+
 # 1 "/usr/include/stdio.h" 1 3 4
 # 27 "/usr/include/stdio.h" 3 4
 # 1 "/usr/include/features.h" 1 3 4
@@ -845,29 +850,22 @@ extern int ftrylockfile (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)
 extern void funlockfile (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));
 # 942 "/usr/include/stdio.h" 3 4
 
-# 20 "src/pointer-arraytest.c" 2
+# 8 "src/pointer-functiontest4.c" 2
 
-# 20 "src/pointer-arraytest.c"
+# 8 "src/pointer-functiontest4.c"
+int get_big(int i,int j){
+ return i>j?i:j;
+}
+int get_max(int i,int j,int k,int (*p)(int,int)){
+ int ret;
+ ret=p(i,j);
+ ret=p(ret,k);
+
+ return ret;
+}
 int main(){
- int a[10],i,*p=
-# 21 "src/pointer-arraytest.c" 3 4
-               ((void *)0)
-# 21 "src/pointer-arraytest.c"
-                   ;
- for(i=0;i<10;i++){
-  a[i]=i;
- }
- for(i=0;i<10;i++){
-  printf("%d",a[i]);
- }
- printf("\n")
- for(i=0;i<10;i++){
-  printf("%d",*(a+i));
- }
- printf("\n");
- for(p=a;p<a+10;){
-  printf("%d",*p++);
- }
- printf("\n");
+ int i=5,j=10,k=15,ret;
+ ret=get_max(i,j,k,get_big);
+ printf("The MAX is %d\n",ret);
  return 0;
 }
